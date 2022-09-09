@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Music</title>
+    <link rel="stylesheet" href="./style.css" />
+    <style>
+      body {
+        background: #12c2e9;
+        background: -webkit-linear-gradient(
+          to right,
+          #f64f59,
+          #c471ed,
+          #12c2e9
+        );
+        background: linear-gradient(to right, #f64f59, #c471ed, #12c2e9);
+        font-family: "Courier New", Courier, monospace;
+      }
+      .div_form {
+        width: 90%;
+        max-width: 600px;
+        margin: auto;
+      }
+      .hero {
+        margin-top: 0;
+        width: 90%;
+        height: 70vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: auto;
+      }
+      .input-group {
+        margin-bottom: 30px;
+        position: relative;
+      }
+      input,
+      textarea {
+        width: 100%;
+        padding: 10px;
+        outline: 0;
+        border: 1px solid #fff;
+        color: #fff;
+        background: transparent;
+        font-size: 15px;
+      }
+      label {
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        padding: 10px;
+        color: #fff;
+        cursor: text;
+        transition: 0.4s;
+      }
+      button {
+        padding: 10px 0;
+        color: #fff;
+        outline: none;
+        background: transparent;
+        border: 1px solid #fff;
+        width: 105%;
+        cursor: pointer;
+      }
+      button:hover {
+        background: #fff;
+        color: #000;
+      }
+      input:focus ~ label,
+      input:valid ~ label,
+      textarea:focus ~ label,
+      textarea:valid ~ label {
+        top: -35px;
+        font-size: 14px;
+      }
+      .row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .row .input-group {
+        flex-basis: 47%;
+      }
+      .nav_bar {
+        display: none;
+      }
+      #form_title {
+        text-align: center;
+        margin-bottom: 0px;
+        margin-top: 10vh;
+        font-size: 35px;
+        font-weight: bold;
+        color: #fff;
+      }
+      .song_name {
+        display: none;
+      }
+      .controls {
+        display: none;
+      }
+      #song {
+        display: none;
+      }
+    </style>
+  </head>
+  <body id="body">
+    <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" id="close_nav">&times;</a>
+      <a href="/home.html">Home</a>
+      <a href="/global.html">Global</a>
+      <a href="/india.html">India</a>
+      <a href="/local.html">Local</a>
+      <a href="/trending.html">Trending</a>
+      <a href="/liked.html">Liked</a>
+      <a href="/history.html">History</a>
+      <a href="/feedback.html" class="active_page">Feedback</a>
+    </div>
+
+    <div class="header">
+      <span style="font-size: 30px; cursor: pointer" id="open_nav"
+        >&#9776;</span
+      >
+      <div class="nav_bar">
+        <input type="text" class="search_text" placeholder="Search" />
+        <button class="search_btn" type="btn">Search</button>
+      </div>
+    </div>
+    <h3 id="form_title">Feedback Form</h3>
+    <div class="hero">
+      <div class="div_form">
+        <div class="row">
+          <div class="input-group">
+            <input type="text" id="name" required />
+            <label for="name">Your Name</label>
+          </div>
+          <div class="input-group">
+            <input type="number" id="number" min="0" max="5" required />
+            <label for="number">RateUs 0-5</label>
+          </div>
+        </div>
+        <div class="input-group">
+          <input type="email" id="email" required />
+          <label for="email">Email id</label>
+        </div>
+        <div class="input-group">
+          <textarea id="message" rows="8" required></textarea>
+          <label for="message">Your Feedback</label>
+        </div>
+        <button type="submit">Submit</button>
+      </div>
+    </div>
+    <div class="song_name">
+      <h3 class="song_name_head">Latest</h3>
+    </div>
+    <table id="songs"></table>
+    <audio id="currentSong"></audio>
+    <div class="controls">
+      <img src="./Assets/backward-solid.svg" alt="backward" id="backward" />
+      <div class="music_state">
+        <img src="./Assets/play-solid.svg" alt="play" id="play" />
+      </div>
+      <img src="./Assets/forward-solid.svg" alt="forward" id="forward" />
+    </div>
+  </body>
+  <script src="./script.js"></script>
+</html>

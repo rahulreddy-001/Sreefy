@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Music</title>
+    <link rel="stylesheet" href="./style.css" />
+    <style>
+      body {
+        background: linear-gradient(262deg, #aeff45, #00eaff, #ff4040);
+        background-size: 600% 600%;
+
+        -webkit-animation: AnimationName 27s ease infinite;
+        -moz-animation: AnimationName 27s ease infinite;
+        animation: AnimationName 27s ease infinite;
+        font-family: "Courier New", Courier, monospace;
+      }
+
+      @-webkit-keyframes AnimationName {
+        0% {
+          background-position: 0% 86%;
+        }
+        50% {
+          background-position: 100% 15%;
+        }
+        100% {
+          background-position: 0% 86%;
+        }
+      }
+      @-moz-keyframes AnimationName {
+        0% {
+          background-position: 0% 86%;
+        }
+        50% {
+          background-position: 100% 15%;
+        }
+        100% {
+          background-position: 0% 86%;
+        }
+      }
+      @keyframes AnimationName {
+        0% {
+          background-position: 0% 86%;
+        }
+        50% {
+          background-position: 100% 15%;
+        }
+        100% {
+          background-position: 0% 86%;
+        }
+      }
+    </style>
+  </head>
+  <body id="body">
+    <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" id="close_nav">&times;</a>
+      <a href="/home.html">Home</a>
+      <a href="/global.html">Global</a>
+      <a href="/india.html">India</a>
+      <a href="/local.html" class="active_page">Local</a>
+      <a href="/trending.html">Trending</a>
+      <a href="/liked.html">Liked</a>
+      <a href="/history.html">History</a>
+      <a href="/feedback.html">Feedback</a>
+    </div>
+
+    <div class="header">
+      <span style="font-size: 30px; cursor: pointer" id="open_nav"
+        >&#9776;</span
+      >
+      <div class="nav_bar">
+        <input type="text" class="search_text" placeholder="Search" />
+        <button class="search_btn" type="btn">Search</button>
+      </div>
+    </div>
+    <div class="song_name">
+      <h3 class="song_name_head">Trending near you</h3>
+    </div>
+    <table id="songs"></table>
+    <audio id="currentSong"></audio>
+    <div class="controls">
+      <img src="./Assets/favourite.png" alt="like" id="like" />
+      <img src="./Assets/backward-solid.svg" alt="backward" id="backward" />
+      <div class="music_state">
+        <img src="./Assets/play-solid.svg" alt="play" id="play" />
+      </div>
+      <img src="./Assets/forward-solid.svg" alt="forward" id="forward" />
+    </div>
+    <div class="alert alert-success" role="alert">Added to Liked Songs</div>
+  </body>
+  <script src="./script.js"></script>
+</html>
