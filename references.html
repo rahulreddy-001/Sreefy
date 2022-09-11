@@ -128,7 +128,7 @@
       .feedbackbox {
         background: rgba(177, 76, 76, 0.54);
         padding: 50px 100px;
-        max-width: 100vw;
+        max-width: 50vw;
         border-radius: 10px;
         display: flex;
         flex-direction: column;
@@ -145,7 +145,6 @@
             font-size: 15px;
             font-weight: 400;
             color: #fff;
-            padding-left: 40px;
             font-weight: 700;
         }
         .feedbackbox  a {
@@ -160,6 +159,12 @@
         }
         li::marker{
             color:white
+        }
+        li{
+           color: rgb(255, 255, 255);
+            text-decoration: none;
+            padding-bottom: 10px;
+            font-weight: 700; 
         }
       @media screen and (max-width: 600px) {
         .feedbackbox {
@@ -215,11 +220,13 @@
     <div class="feedbackbox">
         <div>
             <h2>Our team</h2>
-            <p>Rutuja D</p>
-            <p>Sriya </p>
-            <p>Poojith kumar</p>
-            <p>Rahul Reddy</p>
-            <p>Narayana N</p>
+            <ol>
+                <li>Rutuja D</li>
+                <li>Rahul Reddy</li>
+                <li>Poojith kumar</li>
+                <li>Narayana N</li>
+                <li>Rahul Reddy</li>
+            </ol>
             <h2>References</h2>
             <ul>
                 <li><a href="https://developer.mozilla.org/en-US/">MDN</a></li>
