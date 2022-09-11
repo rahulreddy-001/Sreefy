@@ -13,10 +13,14 @@
       property="twitter:image"
       content="http://music-on.herokuapp.com/Assets/favicon.png"
     />
-    <title>Sreefy - Feedback</title>
+    <title>Sreefy - RateUs</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="manifest" href="./Assets/site.json" />
     <link rel="shortcut icon" type="image/jpg" href="./Assets/favicon.png" />
+    <script
+      src="https://kit.fontawesome.com/b69c913984.js"
+      crossorigin="anonymous"
+    ></script>
     <style>
       body {
         background: #12c2e9;
@@ -124,6 +128,50 @@
       .song_name {
         display: none;
       }
+
+      .feedbackbox {
+        background: rgba(177, 76, 76, 0.54);
+        padding: 50px 100px;
+        max-width: 30vw;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: auto;
+        margin-top: 15vh;
+      }
+      .emoji {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-bottom: 30px;
+      }
+      .emoji img {
+        width: 80px;
+        margin: 0 10px;
+      }
+      #emoji {
+        display: flex;
+        align-items: center;
+        transform: translateX(-400px);
+        transition: 0.3s;
+      }
+      .rating .fa-solid {
+        font-size: 40px;
+        color: #e4e4e4;
+        cursor: pointer;
+      }
+      @media screen and (max-width: 600px) {
+        .feedbackbox {
+          padding: 50px 20px;
+          max-width: 80vw;
+          margin-top: 10vh;
+        }
+        .rating .fa-solid {
+          font-size: 30px;
+        }
+      }
     </style>
     <script
       src="https://kit.fontawesome.com/b69c913984.js"
@@ -131,6 +179,7 @@
     ></script>
   </head>
   <body id="body">
+    
     <div id="mySidenav" class="sidenav">
       <div class="site_logo">
         <img src="./Assets/favicon.png" alt="logo" id="site_logo" />
@@ -143,8 +192,8 @@
       <a href="/trending.html">Trending</a>
       <a href="/liked.html">Liked</a>
       <a href="/history.html">History</a>
-      <a href="/feedback.html" class="active_page">Feedback</a>
-      <a href="/rateus.html">Rate us</a>
+      <a href="/feedback.html"">Feedback</a>
+      <a href="/rateus.html" class="active_page">Rate us</a>
       <div class="nav_bottom">
         <a href="/references.html">
           <i class="fas fa-info-circle"></i>
@@ -167,30 +216,25 @@
         <button class="search_btn" type="btn">Search</button>
       </div>
     </div>
-    <h3 id="form_title">Feedback Form</h3>
-    <form class="hero" name="submit-to-google-sheet" id="feedback_form">
-      <div class="div_form">
-        <div class="row">
-          <div class="input-group">
-            <input type="text" id="name" name="Name" required />
-            <label for="name">Your Name</label>
-          </div>
-          <div class="input-group">
-            <input type="number" id="number" name="Number" required />
-            <label for="number">Mobile no.</label>
-          </div>
+    <h3 id="form_title">Rate us</h3>
+    <div class="feedbackbox">
+      <div class="emoji">
+        <div id="emoji">
+          <img src="images/poor.png" />
+          <img src="images/bad.png" />
+          <img src="images/okay.png" />
+          <img src="images/good.png" />
+          <img src="images/excellent.png" />
         </div>
-        <div class="input-group">
-          <input type="email" id="email" name="Email" required />
-          <label for="email">Email id</label>
-        </div>
-        <div class="input-group">
-          <textarea id="message" rows="8" name="Message" required></textarea>
-          <label for="message">Your Feedback</label>
-        </div>
-        <button type="submit">Submit</button>
       </div>
-    </form>
+      <div class="rating">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+      </div>
+    </div>
     <div class="song_name">
       <h3 class="song_name_head">Latest</h3>
     </div>
@@ -204,23 +248,6 @@
       <img src="./Assets/forward-solid.svg" alt="forward" id="forward" />
     </div>
   </body>
-  <script>
-    const scriptURL =
-      "https://script.google.com/macros/s/AKfycbyxbFXplhhB-dg39RgAcLNbh6PW7Kgd8lRpa3cW202zkmxBsPXVA58BvChIkJx7VrAY/exec";
-    const form = document.forms["submit-to-google-sheet"];
-
-    form.addEventListener("submit", (e) => {
-      document.getElementById("feedback_form").style.display = "none";
-      document.getElementById("form_title").innerHTML =
-        "Thank you for your feedback";
-      document.getElementById("form_title").style.marginTop = "40vh";
-      e.preventDefault();
-      fetch(scriptURL, { method: "POST", body: new FormData(form) })
-        .then((response) => {
-          console.log("Success");
-        })
-        .catch((error) => console.error("Error!", error.message));
-    });
-  </script>
+  <script src="./rateus_script.js"></script>
   <script src="./script.js"></script>
 </html>

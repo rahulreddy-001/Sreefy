@@ -493,3 +493,16 @@ search_btn.addEventListener("click", () => {
     .then((response) => getTable(response.result.videos.splice(0, 5)))
     .catch((err) => console.error(err));
 });
+const shareButton = document.querySelector("#share");
+shareButton.addEventListener("click", async () => {
+  try {
+    navigator.clipboard.writeText(window.location.href);
+    document.querySelector(".alert").style.display = "block";
+    document.querySelector(".alert").innerHTML = "Link Copied";
+    setTimeout(() => {
+      document.querySelector(".alert").style.display = "none";
+    }, 1500);
+  } catch (err) {
+    console.error("Share failed:", err.message);
+  }
+});
