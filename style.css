@@ -118,7 +118,7 @@ body {
   cursor: pointer;
 }
 .categories h4:hover {
-  color: #ffffff;
+  color: #ff0000;
   font-weight: bold;
 }
 
@@ -129,7 +129,7 @@ body {
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: rgba(17, 17, 17, 0.618);
+  background-color: rgb(17, 17, 17);
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 60px;
@@ -280,7 +280,7 @@ td {
   color: rgb(255, 255, 255);
 }
 .nav_bottom a i:hover {
-  color: rgb(0, 0, 0);
+  color: rgb(21, 0, 255);
 }
 .site_logo {
   display: flex;

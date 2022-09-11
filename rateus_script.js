@@ -1,4 +1,4 @@
-var stars = document.getElementsByClassName("fa-solid");
+var stars = document.getElementsByClassName("star");
 var emoji = document.getElementById("emoji");
 stars[0].addEventListener("mouseover", function () {
   stars[0].style.color = "#ffd93b";
