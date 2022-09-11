@@ -19,10 +19,9 @@
     <link rel="shortcut icon" type="image/jpg" href="./Assets/favicon.png" />
     <style>
       body {
-        background: #12c2e9;
         background: -webkit-linear-gradient(
           to right,
-          #f64f59,
+          #f64f5a5c,
           #c471ed,
           #12c2e9
         );
@@ -36,7 +35,7 @@
       }
       .hero {
         margin-top: 0;
-        width: 90%;
+        width: 95%;
         height: 70vh;
         display: flex;
         align-items: center;
@@ -73,7 +72,7 @@
         outline: none;
         background: transparent;
         border: 1px solid #fff;
-        width: 105%;
+        width: 107%;
         cursor: pointer;
       }
       button:hover {
@@ -93,7 +92,7 @@
         justify-content: space-between;
       }
       .row .input-group {
-        flex-basis: 47%;
+        flex-basis: 45%;
       }
       .nav_bar {
         display: none;
@@ -101,7 +100,7 @@
       #form_title {
         text-align: center;
         margin-bottom: 0px;
-        margin-top: 10vh;
+        margin-top: 5vh;
         font-size: 35px;
         font-weight: bold;
         color: #fff;
@@ -124,6 +123,11 @@
       .song_name {
         display: none;
       }
+      .input-group p {
+        color: #fff;
+        font-weight: 800;
+        padding-top: 20px;
+      }
     </style>
     <script
       src="https://kit.fontawesome.com/b69c913984.js"
@@ -143,9 +147,9 @@
       <a href="/trending.html">Trending</a>
       <a href="/liked.html">Liked</a>
       <a href="/history.html">History</a>
-      <a href="/feedback.html" class="active_page">Feedback</a>
+      <a href="/feedback.html">Feedback</a>
       <a href="/rateus.html">Rate us</a>
-      <a href="/signin.html">Sign in </a>
+      <a href="/signin.html" class="active_page">Sign in </a>
       <div class="nav_bottom">
         <a href="/references.html">
           <i class="fas fa-info-circle"></i>
@@ -168,17 +172,17 @@
         <button class="search_btn" type="btn">Search</button>
       </div>
     </div>
-    <h3 id="form_title">Feedback Form</h3>
+    <h3 id="form_title">Sign up</h3>
     <form class="hero" name="submit-to-google-sheet" id="feedback_form">
       <div class="div_form">
         <div class="row">
           <div class="input-group">
             <input type="text" id="name" name="Name" required />
-            <label for="name">Your Name</label>
+            <label for="name">First Name</label>
           </div>
           <div class="input-group">
-            <input type="number" id="number" name="Number" required />
-            <label for="number">Mobile no.</label>
+            <input type="text" id="name" name="Name" required />
+            <label for="name">Last Name</label>
           </div>
         </div>
         <div class="input-group">
@@ -186,10 +190,15 @@
           <label for="email">Email id</label>
         </div>
         <div class="input-group">
-          <textarea id="message" rows="8" name="Message" required></textarea>
-          <label for="message">Your Feedback</label>
+          <input type="password" id="password" name="password" required />
+          <label for="password">Enter new password</label>
         </div>
         <button type="submit">Submit</button>
+        <div class="input-group">
+          <p>
+            Already have an account? <a href="/signin.html">sign in here</a>
+          </p>
+        </div>
       </div>
     </form>
     <div class="song_name">
@@ -205,23 +214,5 @@
       <img src="./Assets/forward-solid.svg" alt="forward" id="forward" />
     </div>
   </body>
-  <script>
-    const scriptURL =
-      "https://script.google.com/macros/s/AKfycbyxbFXplhhB-dg39RgAcLNbh6PW7Kgd8lRpa3cW202zkmxBsPXVA58BvChIkJx7VrAY/exec";
-    const form = document.forms["submit-to-google-sheet"];
-
-    form.addEventListener("submit", (e) => {
-      document.getElementById("feedback_form").style.display = "none";
-      document.getElementById("form_title").innerHTML =
-        "Thank you for your feedback";
-      document.getElementById("form_title").style.marginTop = "40vh";
-      e.preventDefault();
-      fetch(scriptURL, { method: "POST", body: new FormData(form) })
-        .then((response) => {
-          console.log("Success");
-        })
-        .catch((error) => console.error("Error!", error.message));
-    });
-  </script>
   <script src="./script.js"></script>
 </html>

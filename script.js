@@ -316,9 +316,11 @@ const fetchOnLoad = () => {
   if (loc === "liked.html" || loc == "feedback.html" || loc == "history.html") {
     if (loc == "liked.html") {
       let liked_songs = window.localStorage.getItem("liked");
-      liked_songs = JSON.parse(liked_songs);
-      liked_songs = liked_songs.reverse();
-      getTable(liked_songs);
+      if (liked_songs) {
+        liked_songs = JSON.parse(liked_songs);
+        liked_songs = liked_songs.reverse();
+        getTable(liked_songs);
+      }
     }
     if (loc === "history.html") {
       let history_local = window.localStorage.getItem("history");
