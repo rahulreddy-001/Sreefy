@@ -1,4 +1,3 @@
-//Refer from bottom
 const table = document.querySelector("#songs");
 const musicEle = document.getElementById("currentSong");
 const song_name = document.querySelector(".song_name_head");
@@ -13,6 +12,10 @@ const options = {
 };
 
 document.querySelector(".active_page").style.color = "red";
+const _like = document.querySelector("#like");
+if (_like) {
+  _like.style.display = "none";
+}
 let state = 1;
 let music_state = document.querySelector(".music_state");
 const changeState = () => {
@@ -57,6 +60,14 @@ const getRow = (id, title, duration) => {
   tbutton.value = "Play";
   tbutton.classList.add("list_play_button");
   tbutton.addEventListener("click", () => {
+    let like = document.querySelector("#like");
+    like.style.display = "block";
+    let liked = is_liked(id);
+    if (liked) {
+      like.src = "./Assets/liked.png";
+    } else {
+      like.src = "./Assets/tolike.png";
+    }
     song_name.innerHTML = title;
     getDownloadLink(id);
     changeState();
@@ -305,17 +316,9 @@ const fetchOnLoad = () => {
   if (loc === "liked.html" || loc == "feedback.html" || loc == "history.html") {
     if (loc == "liked.html") {
       let liked_songs = window.localStorage.getItem("liked");
-      if (liked_songs) {
-        liked_songs = JSON.parse(liked_songs);
-        console.log(liked_songs);
-        let filtered_songs = [];
-        for (let song of liked_songs) {
-          if (song.id) {
-            filtered_songs.push(song);
-          }
-        }
-        getTable(filtered_songs);
-      }
+      liked_songs = JSON.parse(liked_songs);
+      liked_songs = liked_songs.reverse();
+      getTable(liked_songs);
     }
     if (loc === "history.html") {
       let history_local = window.localStorage.getItem("history");
@@ -381,11 +384,28 @@ play_next_song.addEventListener("click", () => {
   curr_playing = to_play;
   history();
 });
+const is_liked = (id) => {
+  let liked_songs = window.localStorage.getItem("liked");
+  if (liked_songs) {
+    liked_songs = JSON.parse(liked_songs);
+    for (let song of liked_songs) {
+      if (song.id === id) {
+        return true;
+      }
+    }
+    return false;
+  } else {
+    return false;
+  }
+};
+
 const like = document.querySelector("#like");
 if (like) {
   like.addEventListener("click", () => {
-    if (curr_playing.id) {
+    if (curr_playing.id && !is_liked(curr_playing.id)) {
+      like.src = "/Assets/liked.png";
       document.querySelector(".alert").style.display = "block";
+      document.querySelector(".alert").innerHTML = "Added to Liked Songs";
       setTimeout(() => {
         document.querySelector(".alert").style.display = "none";
       }, 1500);
@@ -399,19 +419,36 @@ if (like) {
         local_liked.push(curr_playing);
         window.localStorage.setItem("liked", JSON.stringify(local_liked));
       }
+    } else if (is_liked(curr_playing.id)) {
+      like.src = "/Assets/tolike.png";
+      document.querySelector(".alert").style.display = "block";
+      document.querySelector(".alert").innerHTML = "Removed from Liked Songs";
+      setTimeout(() => {
+        document.querySelector(".alert").style.display = "none";
+      }, 1500);
+      let local_liked = window.localStorage.getItem("liked");
+      if (local_liked) {
+        local_liked = JSON.parse(local_liked);
+        let new_liked = [];
+        for (let song of local_liked) {
+          if (song.id != curr_playing.id) {
+            new_liked.push(song);
+          }
+        }
+        window.localStorage.setItem("liked", JSON.stringify(new_liked));
+      }
     }
   });
 }
+
 const openNav = () => {
   document.getElementById("mySidenav").style.width = "250px";
-  document.getElementById("main").style.marginLeft = "250px";
   document.body.style.backgroundColor = "rgba(0,0,0,1)";
   document.querySelector("#open_nav").style.display = "none";
 };
 
 function closeNav() {
   document.getElementById("mySidenav").style.width = "0";
-  document.getElementById("main").style.marginLeft = "0";
   document.body.style.backgroundColor = "white";
   document.querySelector("#open_nav").style.display = "block";
 }

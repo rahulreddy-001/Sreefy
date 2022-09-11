@@ -4,8 +4,19 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Music</title>
-    <link rel="stylesheet" href="./style.css" />
+    <meta name="description" content="Sreefy – Where Your Faves Music Lives" />
+    <meta
+      property="og:image"
+      content="http://music-on.herokuapp.com/Assets/favicon.png"
+    />
+    <meta
+      property="twitter:image"
+      content="http://music-on.herokuapp.com/Assets/favicon.png"
+    />
+    <title>Sreefy - Feedback</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="manifest" href="./Assets/site.json" />
+    <link rel="shortcut icon" type="image/jpg" href="./Assets/favicon.png" />
     <style>
       body {
         background: #12c2e9;
@@ -104,6 +115,15 @@
       #song {
         display: none;
       }
+      table {
+        display: none;
+      }
+      .controls {
+        display: none;
+      }
+      .song_name {
+        display: none;
+      }
     </style>
   </head>
   <body id="body">
@@ -129,29 +149,36 @@
       </div>
     </div>
     <h3 id="form_title">Feedback Form</h3>
-    <div class="hero">
+    <form class="hero" name="submit-to-google-sheet" id="feedback_form">
       <div class="div_form">
         <div class="row">
           <div class="input-group">
-            <input type="text" id="name" required />
+            <input type="text" id="name" name="Name" required />
             <label for="name">Your Name</label>
           </div>
           <div class="input-group">
-            <input type="number" id="number" min="0" max="5" required />
+            <input
+              type="number"
+              id="number"
+              name="Rating"
+              min="0"
+              max="5"
+              required
+            />
             <label for="number">RateUs 0-5</label>
           </div>
         </div>
         <div class="input-group">
-          <input type="email" id="email" required />
+          <input type="email" id="email" name="Email" required />
           <label for="email">Email id</label>
         </div>
         <div class="input-group">
-          <textarea id="message" rows="8" required></textarea>
+          <textarea id="message" rows="8" name="Message" required></textarea>
           <label for="message">Your Feedback</label>
         </div>
         <button type="submit">Submit</button>
       </div>
-    </div>
+    </form>
     <div class="song_name">
       <h3 class="song_name_head">Latest</h3>
     </div>
@@ -165,5 +192,22 @@
       <img src="./Assets/forward-solid.svg" alt="forward" id="forward" />
     </div>
   </body>
+  <script>
+    const scriptURL =
+      "https://script.google.com/macros/s/AKfycbyxbFXplhhB-dg39RgAcLNbh6PW7Kgd8lRpa3cW202zkmxBsPXVA58BvChIkJx7VrAY/exec";
+    const form = document.forms["submit-to-google-sheet"];
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      fetch(scriptURL, { method: "POST", body: new FormData(form) })
+        .then((response) => {
+          document.getElementById("feedback_form").style.display = "none";
+          document.getElementById("form_title").innerHTML =
+            "Thank you for your feedback";
+          document.getElementById("form_title").style.marginTop = "30vh";
+        })
+        .catch((error) => console.error("Error!", error.message));
+    });
+  </script>
   <script src="./script.js"></script>
 </html>
